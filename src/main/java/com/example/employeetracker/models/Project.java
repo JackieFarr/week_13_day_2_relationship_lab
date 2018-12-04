@@ -1,6 +1,7 @@
 package com.example.employeetracker.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -34,15 +35,14 @@ public class Project {
 
     private List <Employee> employees;
 
-    public Project(Long id, String name, int numOfDays, List employees) {
-        this.id = id;
+    public Project(String name, int numOfDays) {
         this.name = name;
         this.numOfDays = numOfDays;
-        this.employees = employees;
+        this.employees = new ArrayList<>();
     }
 
-    public Project() {
-    }
+//    public Project() {
+//    }
 
     public void setId(Long id) {
         this.id = id;
