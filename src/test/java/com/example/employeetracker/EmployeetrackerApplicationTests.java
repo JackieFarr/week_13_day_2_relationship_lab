@@ -35,9 +35,19 @@ public class EmployeetrackerApplicationTests {
 
 	}
 
-	@Test
+    @Test
     public void canCreateProject(){
+	    Project project1 = new Project("X", 11);
+	    projectRepo.save(project1);
+    }
+
+    @Test
+    public void canAddEmployeeToProject(){
+        Employee tom = new Employee("Tom", "24", 343);
+        employeeRepo.save(tom);
         Project project = new Project("X", 11);
+        projectRepo.save(project);
+        project.addEmployee(tom);
         projectRepo.save(project);
     }
 

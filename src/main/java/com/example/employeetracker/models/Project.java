@@ -41,8 +41,8 @@ public class Project {
         this.employees = new ArrayList<>();
     }
 
-//    public Project() {
-//    }
+    public Project() {
+    }
 
     public void setId(Long id) {
         this.id = id;
@@ -74,5 +74,9 @@ public class Project {
 
     public List getEmployees() {
         return employees;
+    }
+
+    public void addEmployee(Employee employee){
+        this.employees.add(employee);
     }
 }
