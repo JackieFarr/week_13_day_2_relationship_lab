@@ -22,6 +22,10 @@ public class Employee {
     @Column(name = "employee_number")
     private int number;
 
+    @ManyToOne
+    @JoinColumn(name = "department_id", nullable = false)
+    private Department department;
+
     @ManyToMany
     @JoinTable(
             name = "projects_employees",
@@ -39,15 +43,24 @@ public class Employee {
     private List<Project> projects;
 
 
-    public Employee(String first_name, String last_name, int number) {
+    public Employee(String first_name, String last_name, int number, Department department) {
         this.firstName = first_name;
         this.lastName = last_name;
         this.number = number;
+        this.department = department;
         this.projects = new ArrayList<>();
     }
 
     public Employee(){
 
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public void setId(Long id) {
@@ -88,5 +101,9 @@ public class Employee {
 
     public List<Project> getProjects() {
         return projects;
+    }
+
+    public void addProject(Project project){
+        this.projects.add(project);
     }
 }

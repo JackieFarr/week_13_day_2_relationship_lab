@@ -1,9 +1,12 @@
 package com.example.employeetracker;
 
+import com.example.employeetracker.models.Department;
 import com.example.employeetracker.models.Employee;
 import com.example.employeetracker.models.Project;
+import com.example.employeetracker.repositories.DepartmentRepo;
 import com.example.employeetracker.repositories.EmployeeRepo;
 import com.example.employeetracker.repositories.ProjectRepo;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,19 +23,19 @@ public class EmployeetrackerApplicationTests {
 	@Autowired
     ProjectRepo projectRepo;
 
+	@Autowired
+    DepartmentRepo departmentRepo;
+
+	@Before
+    public void before(){
+        Department admin = new Department("Admin");
+        departmentRepo.save(admin);
+        Employee tom = new Employee("Thomas", "24", 343, admin);
+        employeeRepo.save(tom);
+    }
+
 	@Test
 	public void contextLoads() {
-	}
-
-	@Test
-	public void canCreateEmployees(){
-		Employee tom = new Employee("Thomas", "24", 343);
-		Employee bill = new Employee("William", "45", 163);
-		Employee geoff = new Employee("Geoff", "31", 251);
-		employeeRepo.save(tom);
-		employeeRepo.save(bill);
-		employeeRepo.save(geoff);
-
 	}
 
     @Test
@@ -43,12 +46,20 @@ public class EmployeetrackerApplicationTests {
 
     @Test
     public void canAddEmployeeToProject(){
-        Employee tom = new Employee("Tom", "24", 343);
+        Department hr = new Department("Human Resources");
+        departmentRepo.save(hr);
+        Employee tom = new Employee("Tom", "24", 343, hr);
         employeeRepo.save(tom);
         Project project = new Project("X", 11);
         projectRepo.save(project);
         project.addEmployee(tom);
         projectRepo.save(project);
+    }
+
+    @Test
+    public void canCreateDepartment(){
+        Department hr = new Department("Human Resources");
+        departmentRepo.save(hr);
     }
 
 }
