@@ -19,7 +19,7 @@ public class Project {
 
     @ManyToMany
     @JoinTable(
-            name = "prjoects_employees",
+            name = "projects_employees",
             joinColumns = { @JoinColumn(
                     name = "project_id",
                     nullable = false,

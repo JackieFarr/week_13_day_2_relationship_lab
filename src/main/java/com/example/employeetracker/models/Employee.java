@@ -22,7 +22,20 @@ public class Employee {
     @Column(name = "employee_number")
     private int number;
 
-    @Column(name = "projects")
+    @ManyToMany
+    @JoinTable(
+            name = "projects_employees",
+            joinColumns = { @JoinColumn(
+                    name = "employee_id",
+                    nullable = false,
+                    updatable = false)
+            },
+            inverseJoinColumns = {@JoinColumn(
+                    name = "project_id",
+                    nullable = false,
+                    updatable = false)
+            }
+    )
     private List<Project> projects;
 
 
@@ -37,43 +50,43 @@ public class Employee {
 
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public int getNumber() {
-        return number;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public void setNumber(int number) {
         this.number = number;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public List<Project> getProjects() {
+        return projects;
     }
 }
