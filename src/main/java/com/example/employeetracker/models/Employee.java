@@ -1,6 +1,8 @@
 package com.example.employeetracker.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -11,24 +13,24 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "first_name")
+    private String firstName;
 
-    @Column(name = "age")
-    private int age;
+    @Column(name = "last_name")
+    private String lastName;
 
     @Column(name = "employee_number")
     private int number;
 
-    @Column(name = "email")
-    private String email;
+    @Column(name = "projects")
+    private List<Project> projects;
 
 
-    public Employee(String name, int age, int number, String email) {
-        this.name = name;
-        this.age = age;
+    public Employee(String first_name, String last_name, int number, String email) {
+        this.firstName = first_name;
+        this.lastName = last_name;
         this.number = number;
-        this.email = email;
+        this.projects = new ArrayList<>();
     }
 
     public Employee(){
